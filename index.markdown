@@ -4,7 +4,7 @@
 
 layout: default
 ---
-
+<p>This site was last updated on {{ site.time | date: "%B %d, %Y" }}</p>
 
 Filter searches by text: <input type="text" id="search" placeholder="Filter by name, title, or date..." autofocus>
 <p id="record-count"></p>
