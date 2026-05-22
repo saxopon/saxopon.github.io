@@ -7,6 +7,7 @@ layout: default
 
 
 Filter searches by text: <input type="text" id="search" placeholder="Filter by name, title, or date..." autofocus>
+<p id="record-count"></p>
 
 <table id="results">
     <thead>
@@ -28,13 +29,22 @@ Filter searches by text: <input type="text" id="search" placeholder="Filter by n
 </table>
 
 <script>
-    const input= document.getElementById("search")
-    const rows = document.querySelectorAll("#results tbody tr")
+    const input= document.getElementById("search");
+    const rows = document.querySelectorAll("#results tbody tr");
+    const countEl = document.getElementById("record-count");
+
+    function updateCount() {
+        const visible = document.querySelectorAll('#results tbody tr:not([style*="display: none"])');
+        countEl.textContent = visible.length + " of " + rows.length + " records";
+    }
 
     input.addEventListener("input", function () {
         const q = this.value.toLowerCase();
         rows.forEach(row => {
             row.style.display = row.textContent.toLowerCase().includes(q) ? "" : "none";
         });
+        updateCount();
     });
+
+    updateCount();
 </script>
